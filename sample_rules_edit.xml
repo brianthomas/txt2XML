@@ -1,0 +1,30 @@
+<txt2XML root_tag="XMLMail">
+
+  <!-- Sample_rules.xml. For use in the txt2XML
+       GUI tutorial. These rules are designed to 
+       ingest mailing list digests into XML (database).
+   -->
+
+  <!-- first, remove the preamble, no info we want there -->
+  <ignore end="-{10,80}\n"/>
+
+   <!-- loop thru document, tagging up each email -->
+  <repeat>
+     <!-- each email begins with "Subject:" line and
+          ends with 10 to 80 dashes and a newline 
+      -->
+     <match tag="email" start="^\s*?Subject:" end="\s*?-{3,80}\n" statusOfStart="accept" required="no">
+        <match tag="subject" start="^\s*?Subject:\s?" end="\n"/>
+        <match tag="sender" start="From:\s?" end="\n"/>
+        <match tag="time" start="Date:\s?" end="\n"/>
+        <match tag="number" start="X-Message-Number:\s?" end="\n"/>
+        <match tag="body"/>
+     </match>
+
+  </repeat>
+
+  <!-- remove last stuff w/ trash match -->
+  <match tag="TRASH"/>
+
+</txt2XML>
+

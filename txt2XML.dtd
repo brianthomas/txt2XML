@@ -1,0 +1,51 @@
+<!--  txt2XML.dtd - Text-to-XML Rules Language
+	Date April  13, 2000
+	XML Language Document Type Definition (DTD)
+	for rules used by the txt2XML processor
+	(txt2XML.pl) to translate semi-structured
+	text data into XML.  Essentially, a way to
+	pop XML tags into documents that do not have
+	XML tags.
+
+     txt2XML.dtd Copyright (C) 2000 Ed Shaya, Brian Thomas 
+     ADC/GSFC-NASA, Code 631, Greenbelt MD, 20771
+-->
+
+<!ELEMENT txt2XML (match | repeat | choose | print | halt | ignore)+ >
+ <!ATTLIST txt2XML
+ 	root_tag CDATA  #REQUIRED
+	script_version CDATA #IMPLIED
+	accept_null_matches (yes|no) "no"
+	include_errors_in_output (yes|no) "no"
+	entities_to_encode CDATA #IMPLIED
+	error_tag CDATA "ERROR"
+>
+<!ELEMENT match (match | repeat | choose | print | halt | ignore)* >
+ <!ATTLIST match
+ 	start    CDATA  "^"
+	end      CDATA  "$"
+	tag      CDATA  #IMPLIED
+	statusOfStart (drop|accept)  "drop" 
+	statusOfEnd (drop|accept|donate)  "drop"
+	test  CDATA  #IMPLIED
+	required (yes|no) "yes"
+	remainder (data|error) "error"
+>
+<!ELEMENT repeat (match | repeat | choose | print | halt | ignore)+  >
+<!ELEMENT choose (match | repeat | choose | print | halt | ignore)+ >
+<!ELEMENT print EMPTY >
+<!ATTLIST print
+	what    (rule|chunk) "chunk" 
+>
+<!ELEMENT halt EMPTY >
+<!ELEMENT ignore EMPTY >
+ <!ATTLIST ignore
+ 	start    CDATA  "^"
+	end      CDATA  "$"
+	statusOfStart (drop|accept)  "drop" 
+	statusOfEnd (drop|accept|donate)  "drop"
+	test  CDATA  #IMPLIED
+	required (yes|no) "yes"
+	remainder (data|error) "error"
+>
+

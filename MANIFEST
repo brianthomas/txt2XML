@@ -1,0 +1,9 @@
+LICENCE
+MANIFEST
+README
+Text2XML.pm
+WindowTools.pm
+sample_rules.xml
+sample_rules_edit.xml
+txt2XML.dtd
+txt2XML.pl

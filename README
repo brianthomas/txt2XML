@@ -1,0 +1,34 @@
+
+
+This is a BETA release of the Astronomcial
+Data Center (ADC) txt2XML tool. 
+
+Please send any bug reports/patches/comments 
+and suggestions about this software release to  
+
+A postscript version of the User's guide is available
+upon email request.
+
+	Brian Thomas <thomas@adc.gsfc.nasa.gov> 
+
+
+LICENCE & DISCLAIMER 
+--------------------
+
+Please see the LICENCE file.
+
+
+INSTALL
+-------
+
+* For a minimal (UNIX) install, you should be able
+  to run txt2XML.pl directly from the tar directory
+  (assuming that you have installed Perl 5.00503+, 
+  XML::Parser, XML::DOM, Tk, and Tk::GBARR modules).
+
+* Grab the txt2XML_users_guide (from anonymous ftp
+  on xml.gsfc.nasa.gov/pub/adc/txt2XML) for more
+  complete instructions on how to run/install (W95 
+  platforms are supported). 
+
+
