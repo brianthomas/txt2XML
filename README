@@ -1,21 +1,18 @@
 
 
-This is a BETA release of the Astronomcial
-Data Center (ADC) txt2XML tool. 
+This is a BETA release of the Astronomcial Data Center (ADC) 
+txt2XML tool. 
 
-Please send any bug reports/patches/comments 
-and suggestions about this software release to  
+Please send any bug reports/patches/comments and suggestions 
+about this software release. 
 
-A postscript version of the User's guide is available
-upon email request.
-
-	Brian Thomas <thomas@adc.gsfc.nasa.gov> 
+Brian Thomas 
 
 
 LICENCE & DISCLAIMER 
 --------------------
 
-Please see the LICENCE file.
+Please see the LICENSE.txt file.
 
 
 INSTALL
