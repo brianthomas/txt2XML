@@ -1,15 +1,19 @@
 
-
-This is a BETA release of the Astronomcial Data Center (ADC) 
-txt2XML tool. 
+txt2XML is a Perl/Tk program designed to transform semi-formatted
+text files into XML according to a set of user-specified rules.
+This program is targeted towards the bulk conversion of a set of
+similar (but not identical) documents into XML. The original use-case
+for this tool was to convert ASCII documents from scientific journals
+into XML.
 
 Please send any bug reports/patches/comments and suggestions 
 about this software release. 
 
+
 Brian Thomas 
 
 
-LICENCE & DISCLAIMER 
+LICENSE & DISCLAIMER 
 --------------------
 
 Please see the LICENSE.txt file.
