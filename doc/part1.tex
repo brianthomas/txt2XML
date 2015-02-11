@@ -1,0 +1,221 @@
+
+\chapter{Introduction}
+\label{introduction}
+
+\section{What is \program ?}
+\index{ \program , description}
+
+\program\ is a Perl/Tk program designed to help with the parsing of arbitrarily
+formatted ASCII text into XML. To accomplish this goal the
+program is run with a user-specified set of parsing rules that direct
+\program\ on how to tag/markup the input text.
+This program has been tested on both UNIX and Windows 95/98 computers
+but actually has a fair chance of running on any computer that has
+Perl installed and a C compiler (C compiler NOT needed for Windows 
+versions to run; see section \ref{sec:installing} for software requirements).
+
+% FIGURE of txt2XML in action
+\begin{figure}
+\caption{\program\ in action.}
+\label{fig:txt2XML_in_action}
+ \mongovarybothside txt2XML_in_action.ps 5.5in 5.5in
+In this figure \program\ is shown running in the sliding frames mode
+(the default display mode when the Perl Tk::SplitFrame module is 
+installed).
+\index{ \program , description}
+\end{figure}
+
+\program\ may be run as a command line call or with its graphical user
+interface (GUI, figure \ref{fig:txt2XML_in_action}). 
+The GUI features a WYSIWYG interface designed to ease the 
+writing and debugging of parsing rules. In the graphical mode the user may 
+interactively run, debug, edit the input or rule files, and then re-run 
+the parser any number of times. 
+Keyboard and mouse shortcuts allow the user to jump to any point in
+the parsing run to examine exactly what chunk of text was fed to a 
+rule, and how the rule reacted to it. 
+From the GUI, the user may save/load new output text, input and rules text 
+at any point. 
+ 
+\section{Installing \program }
+\label{sec:installing}
+
+\section{Software Requirements}
+\index{ \program , requirements}
+
+You will firstly need a copy of the \program\ distribution archive.
+These are obtainable from our anonymous FTP server 
+{\tt adc.gsfc.nasa.gov} in $\backslash$pub$\backslash$?? or off of
+the WWW from our page at {\tt http://adc.gsfc.nasa.gov/adc/adc\_software.html}. 
+
+You will need an installation of Perl, version 5.00503 or better.
+On many UNIX systems Perl is probably already installed. You can 
+check its version using:
+\begin{quote}
+$>$ perl -v
+\end{quote}
+or from within a MS-DOS command shell:
+\begin{quote}
+$>$ perl.exe -V
+\end{quote}
+\index{Perl}
+If you find that you need to upgrade Perl you may obtain a copy from 
+{\tt ftp.cpan.org}. RedHat Linux users may wish to just obtain
+the binary rpm from {\tt ftp.redhat.com} (don't forget to check the
+signature of the rpm file!). Windows users can obtain
+a free copy of ActivePerl from ActiveState at 
+\activestatewebsite\
+(obtain build 521 or better).  
+
+\begin{table}
+ \begin{center}
+ \caption{Perl Modules Required to Run \program .}
+ \label{tab:perl_modules}
+ \index{Perl, modules}
+  \vskip 12pt
+  \begin{tabular}{|llll|} \hline
+ Perl & Required & \multicolumn{2}{c|}{Associated Files by FTP site} \\
+Module & Version & CPAN (UNIX/W95)$^{1}$ & ActiveState (W95)$^{2}$ \\ \hline\hline
+ & & & \\
+XML::Parser & 2.27+ & XML-Parser-2.27.tar.gz & Included in ActivePerl \\
+ & & & \\
+XML::DOM & 1.25+ & XML-DOM-1.25.tar.gz & XML-DOM.zip \\
+ & & & \\
+Tk & 8.00.013+ & Tk800.013.tar.gz & Tk.zip \\ 
+ & & & \\
+Tk::SplitFrame$^{3}$ & 0.01+  & Tk-DKW-0.01.tar.gz & | \\ 
+ & 1.04+ & Tk-GBARR-1.0401.tar.gz & \\
+ & 0.07+ & Tk-Contrib-0.07.tar.gz & \\
+ & & & \\ \hline 
+   \end{tabular}
+  \end{center}
+$^{1}$Location: {\tt ftp://ftp.cpan.org/pub/CPAN/modules/by-module} \\ 
+$^{2}$Location: {\tt http://www.activestate.com/packages/zips} \\ 
+$^{3}$Module is optional. Can be difficult to install on W95 platforms.
+\end{table}
+
+\index{Perl, modules}
+Depending on the distribution of Perl you installed you will need to 
+obtain and install the Perl modules in table \ref{tab:perl_modules}: 
+Tk::SplitFrame is an optional module, if it is installed the user
+can select to display the tool using a sliding frames mode (this 
+is the mode used in figure \ref{fig:txt2XML_in_action}).
+ Otherwise, \program\ will only display
+with all of the text areas split into separate windows.
+
+For Windows users it is definitely far easier to go the ActivePerl
+route and install the PPD (module) files they provide. 
+You can obtain the ActiveState PPD files (archived in zip format) from
+{\tt www.activestate.com/packages/zips}. 
+
+To use the CPAN modules (archived as gzip'd tarballs) 
+UNIX and Windows users will need a decent C/C++ compiler (gcc 2.8.1 works
+for us) to build the 
+XML::Parser module and a compatible {\tt make} utility ({\tt NMAKE} 
+works for us on W95 platforms). CPAN modules are available at 
+{\tt ftp.cpan.org/pub/CPAN/modules/by-module}.
+
+\subsection{Installation on UNIX systems}
+\index{ \program , UNIX installation}
+
+You will first need to insure that 
+you have the correct version of Perl and all of the needed Perl
+modules installed.  
+
+To install a Perl module, unpack the tarball:
+\begin{quote}
+{\tt $>$ gunzip -c file.tar.gz $|$ tar xvf - }
+\end{quote}
+Change into the new sub-directory and then type:
+\begin{quote}
+{\tt $>$ perl Makefile.PL; make ; make test; make install}
+\end{quote}
+
+You will need to do this for each module in turn. Installation of
+the modules will go easier if you install them in the order:
+\begin{quote}
+XML-Parser-2.27.tar.gz \\
+XML-DOM-1.25.tar.gz \\
+Tk800.013.tar.gz \\
+Tk-GBARR-1.0401.tar.gz  \\
+Tk-Contrib-0.07.tar.gz  \\
+Tk-DKW-0.01.tar.gz 
+\end{quote}
+
+Now unpack the \program\ tarball \program \_latest.tar.gz:
+\begin{quote}
+{\tt $>$ gunzip -c \program \_latest.tar.gz $|$ tar xvf - }
+\end{quote}
+
+You can use \program\ right from the new sub-directory. There is
+a simple install script, {\tt install.sh}, which you may use to
+install \program\ in a favorite directory. If 
+you can get super-user access (if you don't know what this is
+you don't have it) you can install the program in a system
+directory using the install script.
+
+\subsection{Installation for users with W95 platforms}
+\index{ \program , W95 installation}
+
+Installation on Windows platforms is even easier than for
+UNIX, however, just as in the UNIX install you will first 
+need to insure that you have the correct version of Perl and 
+all of the needed Perl modules installed.
+If you need to install/upgrade Perl, download the zip file from 
+the ActiveState web site \activestatewebsite\ and run the
+installer. The modules are similarly easy to install. Download
+the zip files, unpack them, and type (within MS-DOS shell):
+\begin{quote}
+{\tt $>$ ppm install XML-DOM.ppd}
+\end{quote}
+to install the XML-DOM module. Just substitute ``XML-DOM.ppd'' for 
+the appropriate file name of the other modules.
+
+Now unpack the latest \program\ version zip file. 
+You can now invoke the program from the spot you unpacked it.
+
+\section{License}
+\label{sec:license}\index{ \program , license}
+
+Will \program\ be released as open software? Is GPL or BSD license appropriate?
+Does NASA have its own license for software?
+
+Please read the License file which is included in the archive distribution.
+
+\section{Support/Contact/Bug Reports}
+\index{Bug reports}\index{Support}
+\label{contact}
+
+There is no official user support for \program . We are however 
+sympathetic to the first time user who has failed to get the program 
+running even after having {\it read the documentation}.
+Please send requests for help to:
+\begin{quote}
+\helpmail\
+\end{quote}
+Remember we are busy on another project or two, so our response may 
+take some time.  
+
+Comments on how we may work to improve this program and bug reports 
+(especially patches!) are greatly appreciated. 
+Please send email to:
+\begin{quote}
+\bugmail\
+\end{quote}
+
+%Brian Thomas {\it brian.thomas.1@gsfc.nasa.gov} \\ 
+%Ed Shaya {\it edward.shaya.1@gsfc.nasa.gov} \\ 
+%Brian Holmes {\it brian.holmes.1@gsfc.nasa.gov} \\ 
+
+\section{Credits}
+\index{Credits} 
+
+ \begin{center}
+  \begin{tabular}{ll} 
+ Concept:         & Ed Shaya, Brian Thomas, Brian Holmes. \\ 
+ Parser Design:   & Brian Thomas, Ed Shaya, and Jim Blackwell. \\ 
+ GUI Design:      & Brian Thomas, Ed Shaya and Brian Holmes. \\ 
+ Code Written by: & Brian Thomas and Ed Shaya. \\ 
+  \end{tabular}
+ \end{center}
+

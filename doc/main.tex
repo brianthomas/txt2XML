@@ -1,0 +1,88 @@
+%
+% thus begin the document..
+% 
+  
+\documentstyle[local,12pt]{report}  
+
+\pssilent
+% \pagestyle{empty}
+
+% some definitions for the document
+\def\program{{\bf txt2XML}}
+\def\adc{{\bf ADC}}
+\def\bugmail{{\it brian.thomas.1@gsfc.nasa.gov}}
+\def\helpmail{{\it adc@adc.gsfc.nasa.gov}}
+\def\activestatewebsite{{\tt http://www.activestate.com/}}
+
+\def\currentrulehighlightcolor{yellow}
+\def\inputchunkhighlightcolor{yellow}
+\def\currentrulecolor{yellow}
+\def\clickhighlightrulecolor{orange}
+\def\outputelementcolor{green}
+\def\outputerrorcolor{red}
+
+\def\runbutton{{\bf Run Button}} 
+\def\forward1rulebutton{{\bf Forward 1 Rule Button}}
+\def\back1rulebutton{{\bf Back 1 Rule Button}}
+\def\nexthaltbutton{{\bf Next Halt Button}}
+\def\toggleinputchunkviewbutton{{\bf Toggle Input Chunk View Button}}
+
+\def\changetooldisplaysizeoption{{\bf Change Tool Display Size}} 
+\def\changetextfontsizeoption{{\bf Change Text Font Size}} 
+\def\changetextfgbgcoloroption{{\bf Change Text Fg/Bg Color}} 
+\def\quitoption{{\bf Quit}}
+
+\def\haltparseronerrorleveloption{{\bf Halt Parser on Error Level}}
+\def\taggederrorsinoutputxmltextoption{{\bf Tagged Errors in Output XML Text}}
+\def\entifycharsinoutputxmloption{{\bf Entify Chars in Output XML Text}}
+\def\allownullmatchesinoutputxmltextoption{{\bf Allow Null Matches in Output XML Text}}
+
+\def\abouthelpoption{{\bf About}}
+\def\parsinghelpoption{{\bf Parsing Text}}
+\def\knownbugsoption{{\bf Known Bugs}}
+
+\def\errortextarea{{\bf Error Log Area}}
+\def\inputtextarea{{\bf Input Text Area}}
+\def\rulestextarea{{\bf Rules Text Area}}
+\def\outputtextarea{{\bf Output Text Area}}
+ 
+\makeindex
+
+\begin{document}	  
+
+\pagestyle{plain}
+\renewcommand{\thepage}{\roman{page}}
+
+% title page 
+\input{title}
+
+% CONTENTS
+\snglsp
+\tableofcontents
+\listoffigures
+\listoftables
+\vfill\eject
+\dblesp
+%\input{acknowledgement}
+
+% Settings for main body of the text. Note that we go 
+% to arabic numbering and reset counter to start at 1
+\pagebreak
+\sloppy
+\setcounter{page}{1}
+\renewcommand{\thepage}{\arabic{page}}
+
+% body of the document
+\input{part1}
+\input{part2}
+\input{part3}
+
+\appendix{ \input{appA} }
+
+% index of the document
+\input{index}
+
+
+\end{document}
+  
+

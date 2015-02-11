@@ -1,0 +1,41 @@
+\indexentry{ \program , description}{1}
+\indexentry{ \program , requirements}{1}
+\indexentry{ \program , description}{2}
+\indexentry{Perl, modules}{3}
+\indexentry{Perl}{3}
+\indexentry{Perl, modules}{3}
+\indexentry{ \program , UNIX installation}{4}
+\indexentry{ \program , W95 installation}{5}
+\indexentry{ \program , license}{5}
+\indexentry{Bug reports}{5}
+\indexentry{Support}{5}
+\indexentry{Credits}{6}
+\indexentry{parsing, philosophy}{7}
+\indexentry{parsing, error levels}{7}
+\indexentry{ \program , GUI }{7}
+\indexentry{parsing, error levels}{8}
+\indexentry{ \program , GUI Mouse bindings }{8}
+\indexentry{GUI, orientation }{8}
+\indexentry{GUI, command buttons}{8}
+\indexentry{GUI, options menu}{9}
+\indexentry{GUI, parsing control menu}{10}
+\indexentry{GUI, \allownullmatchesinoutputxmltextoption }{10}
+\indexentry{GUI, help menu}{10}
+\indexentry{GUI, parser score display}{11}
+\indexentry{parser, score definition}{11}
+\indexentry{GUI, \inputtextarea }{11}
+\indexentry{GUI, editing input text}{12}
+\indexentry{GUI, setting input break point}{12}
+\indexentry{GUI, \rulestextarea }{12}
+\indexentry{GUI, \outputtextarea }{13}
+\indexentry{ \program , GUI tutorial}{13}
+\indexentry{ \program , command line mode}{13}
+\indexentry{ \program , batch mode}{13}
+\indexentry{ rules, introduction}{15}
+\indexentry{ rules, document format }{15}
+\indexentry{ rules, attributes }{15}
+\indexentry{ rules, list of}{16}
+\indexentry{ \program , GUI key bindings }{17}
+\indexentry{ \program , GUI Mouse bindings }{18}
+\indexentry{ \program , options}{19}
+\indexentry{ \program , options}{20}

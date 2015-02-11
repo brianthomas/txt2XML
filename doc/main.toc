@@ -1,0 +1,26 @@
+\contentsline {chapter}{List of Figures}{iii}
+\contentsline {chapter}{List of Tables}{iv}
+\contentsline {chapter}{\numberline {1}Introduction}{1}
+\contentsline {section}{\numberline {1.1}What is {\bf txt2XML}?}{1}
+\contentsline {section}{\numberline {1.2}Installing {\bf txt2XML}}{1}
+\contentsline {section}{\numberline {1.3}Software Requirements}{1}
+\contentsline {subsection}{\numberline {1.3.1}Installation on UNIX systems}{4}
+\contentsline {subsection}{\numberline {1.3.2}Installation for users with W95 platforms}{5}
+\contentsline {section}{\numberline {1.4}License}{5}
+\contentsline {section}{\numberline {1.5}Support/Contact/Bug Reports}{5}
+\contentsline {section}{\numberline {1.6}Credits}{6}
+\contentsline {chapter}{\numberline {2}Getting Started Using {\bf txt2XML}}{7}
+\contentsline {section}{\numberline {2.1}Parsing Philosophy}{7}
+\contentsline {section}{\numberline {2.2}Running the program in GUI mode}{7}
+\contentsline {subsection}{\numberline {2.2.1}Orientation}{8}
+\contentsline {subsubsection}{Command Buttons/Menu Bar}{8}
+\contentsline {subsubsection}{{\bf Error Log Area}}{11}
+\contentsline {subsubsection}{{\bf Input Text Area}}{11}
+\contentsline {subsubsection}{{\bf Rules Text Area}}{12}
+\contentsline {subsubsection}{{\bf Output Text Area}}{13}
+\contentsline {subsection}{\numberline {2.2.2}Short Tutorial}{13}
+\contentsline {section}{\numberline {2.3}Command line/batch mode}{13}
+\contentsline {chapter}{\numberline {3}About {\bf txt2XML}\ Rules}{15}
+\contentsline {section}{\numberline {3.1}Introduction to the Parsing Rules}{15}
+\contentsline {section}{\numberline {3.2}Examples of Rules Use}{15}
+\contentsline {chapter}{\numberline {A}Summary of Options}{17}

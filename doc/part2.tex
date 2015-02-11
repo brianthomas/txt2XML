@@ -1,0 +1,323 @@
+
+\chapter{Getting Started Using \program}
+
+\section{Parsing Philosophy}
+\label{sec:philosophy}
+\index{parsing, philosophy}
+
+\program\ does not think in terms of lexical structures (e.g. lines, 
+paragraphs, pages, etc.), instead, the document is concieved of
+as a ``chunk'' of text which may be subdivided into a number of
+sub-chunks (which may themselves be further sub-divided, and so on). 
+Any amount of text may be a chunk (1 or more characters) and
+\program\ just views a chunk as comprising a string of characters (which
+may be impregnated with formatting characters like $\backslash$n 
+and $\backslash$r).
+
+Parsing rules may either divide the current ``working chunk'' 
+and pass it on to child rules or 
+it may work on the current working chunk by 
+matching part or all of the text chunk and doing something with
+it (and we'll discuss the things you can do with matched text later). 
+If the current rule can't fully use the matched text it will try
+to pass the remaining chunk of text to a sibling rule.
+If no siblings exist, then that portion of the text chunk is 
+errored out by the program.\index{parsing, error levels}
+
+There are different levels of errors
+in \program\ and these are presented in order of ``seriousness'' in 
+table \ref{tab:errors}. It can sometimes be helpful to run a tight ship
+and catch all errors when you are trying to debug your rules. On a
+production run, where input file formats may vary from file to file, 
+upping the error threshold is more useful so you can get the job finished
+and treat the errors for each file individually later. 
+
+{\footnotesize
+\begin{table}
+ \begin{center}
+ \caption{Defined Error Levels in \program .}
+ \index{parsing, error levels}
+ \label{tab:errors}
+ \index{ \program , GUI Mouse bindings }
+  \vskip 12pt
+  \begin{tabular}{|llll|} \hline
+Error Level & Error Name & Description & Example Error \\ \hline\hline
+ 0 & Trivial & Unlikely to be missed information. & Unmatched Whitespace  \\
+ 1 & Normal  & Likely to be missed information. & Unmatched Character String \\
+ 2 & Serious & Missing/mallformed Parser rule. & non-tag $<$match$>$ rule missing \\
+   & & & child rules. \\
+ 99 & Don't Halt & No errors will stop this baby. & | \\ \hline 
+   \end{tabular}
+  \end{center}
+\end{table}
+}
+
+\section{Running the program in GUI mode} 
+\label{sec:gui}
+\index{ \program , GUI }
+
+The GUI mode presents the user with an interactive interface with which to 
+see the opperation of the parser as it goes through the input text.
+There are short cut mouse and key bindings that will help to accelerate 
+the work of the user in debugging and writing their rules.
+
+To fire up \program\ in the GUI mode:
+
+From a UNIX shell type:
+\begin{quote}
+{\tt $>$ txt2XML.pl -g }
+\end{quote}
+
+From Windows: click on the icon called ``gtxt2XML''.
+ 
+\subsection{Orientation}
+\index{GUI, orientation }
+
+You will notice that there are
+several text areas, and a menu/command button bar (refer to figure
+\ref{fig:txt2XML_in_action}). I'll give a quick orientaion on each
+of these below, you may wish to skip over this section to the short
+tutorial which follows it (section \ref{sec:guitutorial}).
+
+\subsubsection{Command Buttons/Menu Bar}
+In one form or another the menu/command button bar contains all of
+the options and commands you will need to run \program .
+
+\subsubsubsection{Command Buttons}
+\index{GUI, command buttons}
+
+The command buttons available are
+the ``\runbutton '', ``\forward1rulebutton '', ``\back1rulebutton '', 
+``\nexthaltbutton '' and ``\toggleinputchunkviewbutton ''. 
+There is a ``Parsing Score'' display on the far right
+of the command button bar.
+
+Pressing the \runbutton\ causes the application to re-run the parser on the
+text which is currently in the \inputtextarea\ using the parsing rules which
+are currently in the Rules Text Area. Output from the parser run is then 
+shown in the Output Text Area. 
+
+Pressing the \forward1rulebutton\ will make the application advance forward
+1 rule if it can. You will see the current rule highlighted in 
+\currentrulehighlightcolor\ 
+in the Rules Text Area shift down 1 rule and the Input Chunk highlighted in
+\inputchunkhighlightcolor\ 
+mark the chunk of text that was fed into that rule.
+
+Pressing the \back1rulebutton\ causes the application to return to the 
+previous rule, if one exists. As for the \forward1rulebutton\ 
+the highlighting in the \inputtextarea\ will change
+to indicate the working chunk for the current rule.
+
+Pressing the \toggleinputchunkviewbutton\ will toggle the colorization
+of the working chunk. The default is to colorize the working chunk
+with a single color: \inputchunkhighlightcolor . In this mode the 
+color of the button will be yellow. The other mode is to 
+colorize the start, matching, and ending portions of the working chunk. 
+The button will appear pink in this mode.
+
+\subsubsubsection{Options Menu} 
+\index{GUI, options menu}
+
+The Options Menu contains the following options: 
+``\changetooldisplaysizeoption '', ``\changetextfontsizeoption '',
+``\changetextfgbgcoloroption '', and the ``\quitoption '' entries.
+
+Selection of the \changetooldisplaysizeoption\ entry will allow the user
+to pick from a limited menu of other display sizes. 
+Numbers in parenthesis next to the entries are guides to the
+user of the general screen size in pixels of the given display.
+This selection will change the point size of the font too.
+
+Selection \changetextfontsizeoption\ entry will allow the user to 
+change the point size of the font of the tool without changing
+the overall display.
+
+Selection of the \changetextfgbgcoloroption\ entry allows the user to 
+change the display colors of the text areas within the tool.
+
+Selection of the \quitoption\ entry exits the program. You will be
+NOT asked if you want to save any edited files (you have been warned!).
+
+\subsubsubsection{Parsing Control Menu} 
+\index{GUI, parsing control menu}
+
+The Parsing Control Menu contains the following options:
+``\haltparseronerrorleveloption'', ``\taggederrorsinoutputxmltextoption'',
+``\entifycharsinoutputxmloption'', and the ``\allownullmatchesinoutputxmltextoption'' 
+entries.
+
+Selection of the \haltparseronerrorleveloption\ allows the user to change
+the level of error (or higher) that will stop the program. If ``normal''
+error level is selected then ``trivial'' errors will be noted, but passed by
+while any ``normal'' or ``serious'' error the parser encounters will halt the program. 
+Setting to ``Don't Halt'' prevents the program from halting on any error 
+once it starts its parsing run. 
+Refer to table \ref{tab:errors} to see the defined error levels. 
+
+Selection of the \taggederrorsinoutputxmltextoption\ entry allows the user
+to select whether or not errors encountered in the parsing run will show
+up in the output text (the errors are tagged with the string ``ERROR'').
+Regardless of this setting all errors still show up in the \errortextarea . 
+
+Selection of the \entifycharsinoutputxmloption\ changes whether or not 
+characters within tags in the output text are entified.  
+There are a number of reasons for toggling the entification. We have 
+found cases where either turning entification on/off improves readablity 
+of the output text.
+
+Selection of the \allownullmatchesinoutputxmltextoption\ entry is a 
+\index{GUI, \allownullmatchesinoutputxmltextoption }
+special use option. It allows one to tag `empty' text. A case of this 
+is when one might want to record the existence of an empty tag in SGML.
+Normally, it is safe (and desirable) to set this option to ``No''. 
+
+\subsubsubsection{Help Menu} 
+\index{GUI, help menu}
+
+The Help Menu contains the following options:
+``\abouthelpoption'', ``\parsinghelpoption'',
+and the ``\knownbugsoption'' entries.
+Selecting each of these entries will bring up a short help message on that
+topic. The \knownbugsoption\ is notoriously out of date.
+If you find a bug, please be sure to let us know about it! (send a bug
+report to \bugmail\ please!);
+
+\subsubsubsection{Parser Score Display}
+\index{GUI, parser score display}
+
+The ``score'' from parsing the text is displayed here. The definition 
+of the score is 
+\begin{equation}
+score = \frac{Number of characters of text that were successfully parsed}{Number of characters of text which exist in the input document}
+\index{parser, score definition}
+\end{equation}
+
+\subsubsection{\errortextarea }
+
+The \errortextarea\ is where all of the accumulated errors
+from a parsing run are displayed. Every time the \runbutton\ is pressed this
+area is cleared out for a fresh batch of errors (fun!).
+
+Error messages are only loosely formated in the log. A typical message
+would appear as:
+\begin{quote}
+{\tt  ERROR:[number:0][level:1] Zhao J.-L., Tian K.P. }
+\end{quote}
+where ``number:'' records the order in which the error occured,
+``level:'' provides the numerical representation of the error level
+(see table \ref{tab:errors}) and the remaining text is the chunk of 
+text which was errored out. 
+
+\subsubsection{\inputtextarea }
+\index{GUI, \inputtextarea }
+\label{sec:inputtextarea}
+
+The input ASCII text is shown here. The text shown will be 
+highlighted depending on the setting of the 
+\toggleinputchunkviewbutton . In the default highlighting scheme
+the working chunk appears highlighted in \inputchunkhighlightcolor\ and
+the rest of the text plain. In the second mode, the working chunk highlighting
+is more complex: the start, matching, and ending portions of the working chunk
+are all colored differently.
+
+You can edit the text in the \inputtextarea . The editing process is simple,
+\index{GUI, editing input text}
+position the mouse over a section of text and click the left mouse button
+to relocate the text cursor. Alternatively, you can use the arrow keys to 
+move the cursor. Now, just type in new characters on the keyboard to add
+text. You can ``swipe'' regions of text with the mouse by holding down the
+left mouse button. Swiped text will appear with a grey background. If you 
+hit the {\tt backspace} or {\tt delete} keys the swiped text will be deleted
+from the \inputtextarea . Now, you can relocate text by swiping it first
+then clicking the middle (UNIX) or right (Windows) mouse buttons. 
+Swipped text will be duplicated starting from the spot over which you 
+have positioned the mouse. 
+Unfortunately, there is no buffer history. One day we'll replace this simple
+editor with something more heavy-weight.
+
+You can set a break point by positioning the mouse over the point in the  
+\index{GUI, setting input break point}
+input text you wish to stop feeding the parser text and pressing the 
+$<$cntl$>$ button and then left-clicking the mouse.
+The breakpoint character will appear as red on a blue cell. To clear this
+breakpoint, press $<$alt$>$-c.
+
+There are three green buttons: ``Load File'', ``Save'', and ``Save As'' 
+which appear at the top of the \inputtextarea .
+Use these buttons to bring in new input files, overwrite your editted text
+to a file (defaults to the name of the original file),
+or save your buffer to a new file.
+
+\subsubsection{\rulestextarea }
+\index{GUI, \rulestextarea }
+\label{sec:rulestextarea}
+
+The \rulestextarea\ displays the parsing rules which are an XML document.
+The various rules within body of the document are colorized to ease
+reading of the rules.  The ``current rule'' is displayed in this area
+and it will be highlighted in \currentrulecolor . At the end of a parsing
+run, the {\em last} rule successfully parsed with will be the current rule.
+You can advance/go back to the next/prior rule by clicking on the 
+\forward1rulebutton / \back1rulebutton\ or by using 
+the $<$alt$>$-f/$<$alt$>$-b keypresses.  
+
+You can hop to any rule of interest that was successfully parsed
+by pressing down the $<$cntl$>$ button and left clicking the mouse 
+on the rule. 
+The current rule will become the rule you clicked on 
+and will be highlighted in \clickhighlightrulecolor .
+Note that if the new current rule contains 
+children, than for this particular function both the leading element and 
+the closing element will be
+highlighted to improve readability.
+
+
+The \rulestextarea\ has all of the same editing abilities as the 
+\inputtextarea . When you type in new rules the text will be normal. 
+When you run the parser, if the newly added rules are valid XML, they
+will be colorized. The failure of \program\ to colorize your new
+rules will be printed to STDERR\footnote{we haven't found a way to capture
+this information into the GUI yet. If you know a way, send me an email!
+-b.t. \bugmail} and detail the location in your rules where there is 
+a problem with the XML format.
+The rules themselves are discussed in section \ref{sec:rules_def}. 
+
+As for the \inputtextarea\ there are three green buttons at the top
+of the widget: ``Load File'', ``Save'', and ``Save As''. These have the
+same meanings and abilities.
+
+\subsubsection{\outputtextarea }
+\index{GUI, \outputtextarea }
+
+The \outputtextarea\ displays output XML text in a colorized format.
+Elements are colored \outputelementcolor\ and error elements are
+colored \outputerrorcolor . Tagged text is left normal.
+
+The \outputtextarea\ is not editable and only has two of the three
+green file function buttons that the \inputtextarea\ and 
+\rulestextarea\ have. You can save / save as your output file.
+As for the other two widgets, the ``Save'' and ``Save As'' buttons 
+have the same meanings.
+
+\subsection{Short Tutorial}
+\label{sec:guitutorial}
+\index{ \program , GUI tutorial}
+
+Alright, lets take this baby out for a spin, shall we?
+Fire up the GUI and load in the sample input ASCII text file and 
+rules file we provide in our distribution.
+
+\section{Command line/batch mode} 
+\label{sec:commandline}\index{ \program , command line mode}
+\index{ \program , batch mode}
+
+Most of the time you dont want the GUI. You want to quietly parse
+a pile of files without any fireworks. Command line mode is for you.
+
+\begin{quote}
+perl.exe \program .pl 
+\end{quote}
+
+
+

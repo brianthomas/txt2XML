@@ -1,0 +1,64 @@
+
+\chapter{About \program\ Rules}
+
+\section{Introduction to the Parsing Rules} 
+\label{sec:rules_def}
+\index{ rules, introduction}
+
+Introduction to rules. They are XML document. 
+Format of a rules document (how to nest, indent).
+\index{ rules, document format }
+Rules have attributes (see table for allowed attributes).
+\index{ rules, attributes }
+Regex matching is Perl matching.  
+
+{\small
+\begin{table}
+ \begin{center}
+ \caption{Available Parsing Rules.}
+ \label{tab:parsing_rules}
+ \index{ rules, list of}
+  \vskip 12pt
+  \begin{tabular}{|lll|} \hline
+Parsing Rule & Allowed Attributes & Description \\ \hline\hline
+ & & \\
+txt2XML & roottag$^{1}$ & Root element in XML rules document. \\ 
+ & & Doesn't have to have child rules, but \\
+ & & without them not much of anything will \\
+ & & get parsed! \\
+ & & \\
+match & start, end, tag &  Tries to match text passed to it \\
+ & statusOfStart, & from the current working chunk. If \\
+ & statusOfEnd, & successful the matched text is either tagged\\
+ & test & and inserted into the output document or passed \\
+ & & to child rules (if they exist). \\
+ & & \\
+repeat & | & This rule will cause to loop over its  \\
+ & & child rules until {\em none} of the child \\
+ & & rules is successful in extracting something \\
+ & & from the current chunk. Repeat rules \\
+ & & must have child rules. \\
+ & & \\
+choose$^{2}$ & | & \\
+ & & Must have child rules. \\
+ & & \\
+halt & | & Halts the parser run when encountered. \\
+ & & In the GUI, it is possible to proceed from one \\
+ & & halt rule to the next. Similar in functionality \\
+ & & to break point functionality in C debuggers. \\
+ & & \\
+ignore & start, end, tag & Tries to match text passed to it\\
+ & statusOfStart, & from the current working chunk. \\
+ & statusOfEnd, & If successfull it will ignore this text \\
+ & test & (so it won't error out or appear in output) \\
+ & & Ignore rules may not have children. \\
+ & & \\ \hline 
+   \end{tabular}
+  \end{center}
+$^{1}$This attribute is required. \\ 
+$^{2}$Use of this rule is deprecated.
+\end{table}
+}
+
+\section{Examples of Rules Use} 
+
